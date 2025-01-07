@@ -1,19 +1,21 @@
 package model;
 
-public class Customer {
-    private final int sequenceNumber;
+public class Customer 
+{
+    private final int sqNum;
     private final String name;
     private final String parcelId;
 
-    public Customer(int sequenceNumber, String name, String parcelId) {
-        this.sequenceNumber = sequenceNumber;
+    public Customer(int sqNum, String name, String parcelId) 
+    {
+        this.sqNum = sqNum;
         this.name = name;
         this.parcelId = parcelId;
     }
 
-    public int getSequenceNumber() {
-        return sequenceNumber;
-    }
+    public int getsqNum() {
+        return sqNum;
+    } // get parcel sequence number
 
     public String getName() {
         return name;
