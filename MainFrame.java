@@ -11,55 +11,77 @@ import java.awt.*;
 import java.util.List;
 
 public class MainFrame extends JFrame {
-    private JTable customerTable;
+    private JTable CustomerTable;
     private JTable parcelTable;
     private final Manager manager;
 
-    public MainFrame(List<Customer> customers, List<Parcel> parcels, Manager manager) {
+    public MainFrame(List<Customer> Customers, List<Parcel> parcels, Manager manager) {
         this.manager = manager;
         setTitle("Parcel Depot Management");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
+        setLayout(new BorderLayout(10, 10)); // Added some space between components
+
+        // Set the background color of the frame
+        getContentPane().setBackground(Color.DARK_GRAY); // Dark gray background
 
         // Initialize tables
-        initializeCustomerTable(customers);
+        initializeCustomerTable(Customers);
         initializeParcelTable(parcels);
 
         // Create panels for tables
-        add(new JScrollPane(customerTable), BorderLayout.WEST);
-        add(new JScrollPane(parcelTable), BorderLayout.CENTER);
+        JPanel tablePanel = new JPanel(new GridLayout(1, 2, 10, 10)); // New panel for tables
+        tablePanel.setBackground(Color.DARK_GRAY); // Ensure the panel has the same background
+        tablePanel.add(new JScrollPane(CustomerTable));
+        tablePanel.add(new JScrollPane(parcelTable));
+        add(tablePanel, BorderLayout.CENTER);
 
-        // Create button panel
-        JPanel buttonPanel = new JPanel();
+        // Create button panel on the right side with GridLayout
+        JPanel buttonPanel = new JPanel(new GridLayout(6, 1, 10, 10)); // Vertical button layout
+        buttonPanel.setBackground(Color.DARK_GRAY); // Same background as main frame
+        buttonPanel.setPreferredSize(new Dimension(200, 0)); // Fix the width of the button panel
+        addGenerateReportButton(buttonPanel);
         addProcessCustomerButton(buttonPanel);
         addAddCustomerButton(buttonPanel);
         addAddParcelButton(buttonPanel);
         addFindParcelButton(buttonPanel);
-        addGenerateReportButton(buttonPanel);
-        add(buttonPanel, BorderLayout.SOUTH);
+
+        add(buttonPanel, BorderLayout.EAST);
 
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
-    private void initializeCustomerTable(List<Customer> customers) {
+    private void initializeCustomerTable(List<Customer> Customers) {
         String[] columns = {"Seq No", "Name", "Parcel ID"};
         DefaultTableModel model = new DefaultTableModel(columns, 0);
 
-        for (Customer customer : customers) {
+        for (Customer Customer : Customers) {
             model.addRow(new Object[]{
-                    customer.getSequenceNumber(),
-                    customer.getName(),
-                    customer.getParcelId()
+                    Customer.getsqNum(),
+                    Customer.getName(),
+                    Customer.getParcelId()
             });
         }
 
-        if (customerTable == null) {
-            customerTable = new JTable(model);
+        if (CustomerTable == null) {
+            CustomerTable = new JTable(model);
         } else {
-            customerTable.setModel(model);
+            CustomerTable.setModel(model);
         }
+
+        // Customizing table appearance
+        CustomerTable.setSelectionBackground(Color.BLACK); // Black selection background
+        CustomerTable.setSelectionForeground(Color.WHITE); // White text color for selected rows
+        CustomerTable.setRowHeight(30); // Increase row height for better readability
+        CustomerTable.setFillsViewportHeight(true); // Make table fill the available space
+        CustomerTable.setGridColor(Color.GRAY); // Gray grid color
+
+        // Set the text color to white for all cells
+        CustomerTable.setForeground(Color.WHITE);
+
+        // Add alternating row colors with black and gray
+        CustomerTable.setDefaultRenderer(Object.class, new AlternateRowRenderer());
     }
 
     private void initializeParcelTable(List<Parcel> parcels) {
@@ -67,7 +89,7 @@ public class MainFrame extends JFrame {
         DefaultTableModel model = new DefaultTableModel(columns, 0);
 
         for (Parcel parcel : parcels) {
-            model.addRow(new Object[]{
+            model.addRow(new Object[] {
                     parcel.getParcelId(),
                     parcel.getLength() + " x " + parcel.getWidth() + " x " + parcel.getHeight(),
                     parcel.getWeight(),
@@ -82,12 +104,26 @@ public class MainFrame extends JFrame {
             parcelTable.setModel(model);
         }
 
-        // Apply color-coded renderer
+        // Apply color-coded renderer for the status column
         parcelTable.getColumnModel().getColumn(4).setCellRenderer(new StatusColorRenderer());
+
+        // Customizing table appearance
+        parcelTable.setSelectionBackground(Color.BLACK); // Black selection background
+        parcelTable.setSelectionForeground(Color.WHITE); // White text color for selected rows
+        parcelTable.setRowHeight(30); // Increase row height for better readability
+        parcelTable.setFillsViewportHeight(true); // Make table fill the available space
+        parcelTable.setGridColor(Color.GRAY); // Gray grid color
+
+        // Set the text color to white for all cells
+        parcelTable.setForeground(Color.WHITE);
+
+        // Add alternating row colors with black and gray
+        parcelTable.setDefaultRenderer(Object.class, new AlternateRowRenderer());
     }
 
     private void addProcessCustomerButton(JPanel buttonPanel) {
         JButton processButton = new JButton("Process Customer");
+        customizeButton(processButton);
         processButton.addActionListener(e -> {
             String message = manager.processNextCustomer();
             JOptionPane.showMessageDialog(this, message);
@@ -99,9 +135,9 @@ public class MainFrame extends JFrame {
         buttonPanel.add(processButton);
     }
 
-
     private void addGenerateReportButton(JPanel buttonPanel) {
         JButton reportButton = new JButton("Generate Report");
+        customizeButton(reportButton);
         reportButton.addActionListener(e -> {
             String reportFilename = "resources/report.txt";
             manager.saveReport(reportFilename);
@@ -112,6 +148,7 @@ public class MainFrame extends JFrame {
 
     private void addAddCustomerButton(JPanel buttonPanel) {
         JButton addCustomerButton = new JButton("Add Customer");
+        customizeButton(addCustomerButton);
         addCustomerButton.addActionListener(e -> {
             String name = JOptionPane.showInputDialog(this, "Enter Customer Name:");
             String parcelId = JOptionPane.showInputDialog(this, "Enter Parcel ID:");
@@ -127,6 +164,7 @@ public class MainFrame extends JFrame {
 
     private void addAddParcelButton(JPanel buttonPanel) {
         JButton addParcelButton = new JButton("Add Parcel");
+        customizeButton(addParcelButton);
         addParcelButton.addActionListener(e -> {
             try {
                 String parcelId = JOptionPane.showInputDialog(this, "Enter Parcel ID:");
@@ -154,9 +192,9 @@ public class MainFrame extends JFrame {
         buttonPanel.add(addParcelButton);
     }
 
-
     private void addFindParcelButton(JPanel buttonPanel) {
         JButton findParcelButton = new JButton("Find Parcel");
+        customizeButton(findParcelButton);
         findParcelButton.addActionListener(e -> {
             String parcelId = JOptionPane.showInputDialog(this, "Enter Parcel ID:");
             if (parcelId != null) {
@@ -172,8 +210,8 @@ public class MainFrame extends JFrame {
     }
 
     private void updateCustomerTable() {
-        List<Customer> customers = manager.getAllCustomers();
-        initializeCustomerTable(customers);
+        List<Customer> Customers = manager.getAllCustomers();
+        initializeCustomerTable(Customers);
         revalidate();
         repaint();
     }
@@ -205,5 +243,39 @@ public class MainFrame extends JFrame {
             }
         }
     }
-}
 
+    // Custom row renderer to add alternating row colors
+    private static class AlternateRowRenderer extends DefaultTableCellRenderer {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            if (row % 2 == 0) {
+                c.setBackground(Color.GRAY); // Gray for even rows
+            } else {
+                c.setBackground(Color.BLACK); // Black for odd rows
+            }
+            return c;
+        }
+    }
+
+    // Custom button styling for a more polished look
+    private void customizeButton(JButton button) {
+        button.setBackground(Color.GRAY); // Gray background
+        button.setForeground(Color.WHITE); // White text
+        button.setFont(new Font("Arial", Font.BOLD, 14)); // Bold font
+        button.setFocusPainted(false);
+        button.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); // Black border
+        button.setCursor(new Cursor(Cursor.HAND_CURSOR)); // Change cursor on hover
+
+        // Hover effect for buttons
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                button.setBackground(Color.DARK_GRAY); // Darker gray on hover
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                button.setBackground(Color.GRAY); // Default gray color
+
+            }
+        });
+    }
+}
