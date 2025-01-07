@@ -3,11 +3,13 @@ package model;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class QueueofCustomers {
+public class CustomerQueue 
+{
     private Queue<Customer> customers;
     private int processedCount = 0; // Counter for processed customers
 
-    public QueueofCustomers() {
+    public CustomerQueue() 
+    {
         customers = new LinkedList<>();
         processedCount = 0;
     }
@@ -20,8 +22,10 @@ public class QueueofCustomers {
         return customers.peek();
     }
 
-    public void removeCustomer() {
-        if (!customers.isEmpty()) {
+    public void removeCustomer() 
+    {
+        if (!customers.isEmpty()) 
+        {
             customers.poll();
             processedCount++;
         }
