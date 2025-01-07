@@ -6,20 +6,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("MismatchedQueryAndUpdateOfStringBuilder")
-public class Log {
+public class Log
+{
     private final StringBuilder logBuffer = new StringBuilder();
     private static Log instance;
     private double totalFees = 0.0;
     private final List<String> collectedParcels = new ArrayList<>();
 
 
-    private Log() {
-        // Private constructor for Singleton pattern
+    private Log()
+    {
+        // Private constructor for Singleton
     }
 
-    public static synchronized Log getInstance() {
-        if (instance == null) {
+    public static synchronized Log getInstance()
+    {
+        if (instance == null)
+        {
             instance = new Log();
         }
         return instance;
@@ -37,7 +40,8 @@ public class Log {
         collectedParcels.add(parcelInfo);
     }
 
-    public void writeReport(String filename, Manager manager) {
+    public void writeReport(String filename, Manager manager)
+    {
         StringBuilder report = new StringBuilder();
         report.append("Parcel Depot Management Report\n");
         report.append("=============================\n\n");
@@ -45,21 +49,23 @@ public class Log {
         report.append("Total Parcels Collected: ").append(collectedParcels.size()).append("\n");
         report.append("Total Fees Collected: £").append(String.format("%.2f", totalFees)).append("\n\n");
 
-        // Add processed parcels
+
         report.append("Processed Parcels:\n");
         report.append("------------------\n");
-        for (String event : collectedParcels) {
+        for (String event : collectedParcels)
+        {
             report.append(event).append("\n");
         }
 
         // Add pending parcels
         report.append("\nPending Parcels in Depot:\n");
         report.append("--------------------------\n");
-        for (Parcel parcel : manager.getParcelMap().getWaitingParcels()) {
+        for (Parcel parcel : manager.getParcelMap().getWaitingParcels())
+        {
             report.append(parcel).append("\n");
+
         }
 
-        // Add summary statistics
         report.append("\nSummary Statistics:\n");
         report.append("-------------------\n");
         report.append("Total Parcels in Depot: ").append(manager.getParcelMap().getParcels().size()).append("\n");
@@ -69,11 +75,13 @@ public class Log {
         report.append("Thank you for using Parcel Depot Management System!\n");
         report.append("Generated on: ").append(java.time.LocalDateTime.now()).append("\n");
 
-        try (FileWriter writer = new FileWriter(filename)) {
+        try (FileWriter writer = new FileWriter(filename))
+        {
             writer.write(report.toString());
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             System.err.println("Error writing report: " + e.getMessage());
         }
     }
-
 }
