@@ -1,0 +1,51 @@
+Parcel Depot Management Report
+=============================
+
+Total Customers Processed: 1
+Total Parcels Collected: 1
+Total Fees Collected: £12.80
+
+Processed Parcels:
+------------------
+Parcel C919 collected by customer Andrew Robertson | Fee: £12.80
+
+Pending Parcels in Depot:
+--------------------------
+Parcel{parcelId='X009', daysInDepot=9, weight=1.0, length=9.0, width=9.0, height=7.0, status='waiting'}
+Parcel{parcelId='X746', daysInDepot=4, weight=4.0, length=9.0, width=5.0, height=7.0, status='waiting'}
+Parcel{parcelId='X309', daysInDepot=1, weight=2.0, length=8.0, width=5.0, height=11.0, status='waiting'}
+Parcel{parcelId='X507', daysInDepot=5, weight=3.0, length=9.0, width=8.0, height=13.0, status='waiting'}
+Parcel{parcelId='X606', daysInDepot=8, weight=8.0, length=4.0, width=2.0, height=13.0, status='waiting'}
+Parcel{parcelId='X904', daysInDepot=4, weight=1.0, length=4.0, width=9.0, height=15.0, status='waiting'}
+Parcel{parcelId='X198', daysInDepot=9, weight=4.0, length=8.0, width=0.0, height=10.0, status='waiting'}
+Parcel{parcelId='X475', daysInDepot=4, weight=3.0, length=8.0, width=1.0, height=11.0, status='waiting'}
+Parcel{parcelId='X552', daysInDepot=4, weight=5.0, length=7.0, width=8.0, height=12.0, status='waiting'}
+Parcel{parcelId='X036', daysInDepot=8, weight=4.0, length=6.0, width=9.0, height=12.0, status='waiting'}
+Parcel{parcelId='X278', daysInDepot=5, weight=3.0, length=1.0, width=0.0, height=11.0, status='waiting'}
+Parcel{parcelId='X213', daysInDepot=4, weight=8.0, length=5.0, width=2.0, height=15.0, status='waiting'}
+Parcel{parcelId='X214', daysInDepot=1, weight=8.0, length=1.0, width=1.0, height=15.0, status='waiting'}
+Parcel{parcelId='X733', daysInDepot=6, weight=6.0, length=5.0, width=7.0, height=11.0, status='waiting'}
+Parcel{parcelId='X316', daysInDepot=9, weight=5.0, length=4.0, width=0.0, height=11.0, status='waiting'}
+Parcel{parcelId='X857', daysInDepot=2, weight=6.0, length=6.0, width=3.0, height=9.0, status='waiting'}
+Parcel{parcelId='X121', daysInDepot=3, weight=7.0, length=2.0, width=3.0, height=6.0, status='waiting'}
+Parcel{parcelId='X682', daysInDepot=3, weight=6.0, length=4.0, width=4.0, height=12.0, status='waiting'}
+Parcel{parcelId='X386', daysInDepot=9, weight=1.0, length=6.0, width=5.0, height=9.0, status='waiting'}
+Parcel{parcelId='X540', daysInDepot=9, weight=2.0, length=5.0, width=4.0, height=5.0, status='waiting'}
+Parcel{parcelId='X782', daysInDepot=5, weight=3.0, length=2.0, width=7.0, height=12.0, status='waiting'}
+Parcel{parcelId='X025', daysInDepot=7, weight=1.0, length=4.0, width=9.0, height=9.0, status='waiting'}
+Parcel{parcelId='X521', daysInDepot=6, weight=4.0, length=4.0, width=4.0, height=8.0, status='waiting'}
+Parcel{parcelId='X720', daysInDepot=4, weight=2.0, length=1.0, width=3.0, height=8.0, status='waiting'}
+Parcel{parcelId='X020', daysInDepot=1, weight=1.0, length=6.0, width=4.0, height=14.0, status='waiting'}
+Parcel{parcelId='X064', daysInDepot=8, weight=4.0, length=1.0, width=8.0, height=15.0, status='waiting'}
+Parcel{parcelId='X086', daysInDepot=7, weight=4.0, length=1.0, width=7.0, height=13.0, status='waiting'}
+Parcel{parcelId='X285', daysInDepot=1, weight=4.0, length=3.0, width=1.0, height=10.0, status='waiting'}
+Parcel{parcelId='X780', daysInDepot=4, weight=1.0, length=2.0, width=5.0, height=12.0, status='waiting'}
+
+Summary Statistics:
+-------------------
+Total Parcels in Depot: 30
+Parcels Waiting: 29
+Parcels Collected: 1
+
+Thank you for using Parcel Depot Management System!
+Generated on: 2025-01-07T12:01:21.727469
