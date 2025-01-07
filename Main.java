@@ -6,7 +6,8 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         // Initialize the manager
         Manager manager = new Manager();
 
@@ -22,7 +23,9 @@ public class Main {
         ));
 
         // Save the report on application exit
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> 
+                                                        
+                                                        {
             manager.saveReport("resources/report.txt");
             System.out.println("Report saved on application exit.");
         }));
